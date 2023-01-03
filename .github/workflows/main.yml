@@ -16,6 +16,7 @@ jobs:
 
       # Check cache
       - name: Cache buildroot
+        if: false
         id: cache
         uses: actions/cache@v3
         with:
@@ -28,6 +29,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libelf-dev qemu-utils
           sudo cp -f files/board/arpl/overlayfs/usr/bin/yq /usr/bin/yq
+
+      # zh_CN
+      - name: zh_CN
+        run: chmod a+x .github/workflows/zh_CN.sh && .github/workflows/zh_CN.sh
 
       # Prepare buildroot for first make (for cache)
       - name: Prepare buildroot
